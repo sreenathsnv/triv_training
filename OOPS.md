@@ -159,3 +159,195 @@ output
 - Data hiding can be performed using access specifier
 
 ## Inheritance
+!["Inheritance in memory"](/images/inheritance.png)
+
+- in the constructor of child class super(); must be called first to ensure parent class initialization before the child class.
+
+### Simple inheritance 
+
+``` 
+	// Person class
+	package com.trivium.inheritance;
+
+	public class Person1 {
+		private String name;
+		private int age;
+
+		public Person1(String name, int age) {
+			super();
+			this.name = name;
+			this.age = age;
+		}
+
+		@Override
+		public String toString() {
+			return "Person1 [name=" + name + ", age=" + age + "]";
+		}
+
+		public String getName() {
+			return name;
+		}
+
+		public int getAge() {
+			return age;
+		}
+
+	}
+
+```
+```
+	// Employee class
+
+	public class Employee1 extends Person1 {
+
+		private int eno;
+		private float basicPay;
+
+		public Employee1(String name, int age, int eno, float basicPay) {
+			super(name, age);
+			this.eno = eno;
+			this.basicPay = basicPay;
+		}
+
+		@Override
+		public String toString() {
+			return "Employee1 [eno=" + eno + ", basicPay=" + basicPay + ", getName()=" + getName() + ", getAge()="
+					+ getAge() + "]";
+		}
+
+	}
+```
+```
+	// main
+
+	public class InheritanceDemo2 {
+		public static void main(String[] args) {
+			
+			Employee1 emp1 = new Employee1("Sreenath", 23, 101, 90000);
+			System.out.println(emp1);
+		}
+	}
+```
+
+### Multilevel inheritance
+
+class A -> class B -> class C
+
+
+## Polymorphism
+
+### Method overriding
+- Runtime Polymorphism
+
+- The class should be inherited from a parent class
+- Signature should be same
+
+
+
+```
+
+public class A {
+	
+	void show() {
+		System.out.println("Message from class A");
+	}
+}
+
+
+```
+
+```  
+
+
+public class B extends A {
+	
+	void test() {
+		System.out.println("Message from class B");
+	}
+	
+	
+	@Override
+	void show() {
+		System.out.println("This is from B");
+	}
+}
+
+
+```
+
+``` 
+
+public class MethodOverridingDemo {
+
+	public static void main(String[] args) {
+		
+		
+		B b = new B();
+		b.test();
+		b.show();
+
+	}
+	
+	
+
+}
+
+
+```
+
+### Dynamic  binding / Polymorphism
+
+Since the child object has some part of parent class in the memory,
+during the runtime , parent class will be able to refer that area. The JVM cant identify this
+during the compile time.
+
+``` 
+		
+		A aObj = new A();
+		aObj.show();
+		
+		A bObj = new B();
+		bObj.show();
+//		bObj.test(); wont work
+
+```
+With Multilevel inheritance A->B->C
+
+```
+	A cobj = new C();
+	cobj.show(); // "Message from B"
+```
+
+### instanceof operator
+
+```
+	a instanceof A -> bool
+``` 
+
+## Abstraction 
+
+- Child should implement all the abstract methods
+- Otherwise make the child class abstract as well
+
+
+
+```
+	public abstract class Shape {
+	
+		abstract void computeArea() ;
+		abstract void computePerimeter();
+
+	}
+
+```
+```
+	public static void main(String[] args) {
+		Shape s = null; // allowed
+
+		s = new Square(7);
+		s.computeArea();
+		s.computePerimeter();
+
+	}
+
+```
