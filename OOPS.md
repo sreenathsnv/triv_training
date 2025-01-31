@@ -8,6 +8,8 @@
  5. Polymorphism 
  6. Abstraction
 
+!["members and blocks"](/images/oops1.png)
+
 
 ## Class
 Classes are used to represent real world entities. It is a blueprint of objects.
@@ -42,7 +44,7 @@ With one class, many objects can be created
 ### Constructors    
 
 - Used to create objeccts
-- Responsible for object instanciation
+- Responsible for object instantiation
 
 ### Block 
 
@@ -140,3 +142,20 @@ output
     public static void setXXXX(String XXXX) {
 		ClassName.XXXXX = XXXX;
 	}
+
+## Relations - Is A and Has A relations  
+
+### - Has A : Association - Aggregation and Composition
+
+#### Aggregation - can exist independently
+#### Composition - The child (part) cannot exist without the parent (whole).
+
+
+
+## Encapsulation
+
+- Both data and methods that operates on the data is bind together inside a class
+- Provides data hiding and modularity
+- Data hiding can be performed using access specifier
+
+## Inheritance
