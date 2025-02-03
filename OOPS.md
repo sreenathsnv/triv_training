@@ -19,6 +19,25 @@ With one class, many objects can be created
 - Member variables
 - Memeber functions / Methods
 
+
+## Object
+
+- When two objects are compared the hashcode is compared instead of the values they are holding
+
+```
+Employee emp1 = new Employee(110, "Arun");
+		Employee emp2 = new Employee(111, "Varun");
+		
+		if(emp1 == emp2) {
+			System.out.println("Objects are same");
+		}
+		else {
+			
+			System.out.println("Objects are not same");
+		}
+// Objects are not same is printed
+```
+
 ## static keyword
 - Used to create class variables and methods
 - Static components are loaded when we run java className.class is called or first occurence
@@ -201,6 +220,8 @@ output
 - protected
 - default
 - private
+
+!["Access Specifier"](/images/access.png)
 
 ## Inheritance
 !["Inheritance in memory"](/images/inheritance.png)
@@ -446,5 +467,78 @@ public class MethodOverLoadingDemo {
 		s.computePerimeter();
 
 	}
+
+```
+
+## Exception handling
+
+!["Exceptions"](/images/exceptions.png)
+
+
+```
+
+package com.trivium.Exceptions;
+
+import java.util.Scanner;
+
+public class ExceptionsDemo1a {
+
+	private static int divide(int numerator, int denominator) {
+
+		int quotient = 0;
+		try
+
+		{
+			quotient = numerator / denominator;
+			System.out.println("EO divide");
+		} catch (ArithmeticException e) {
+			e.printStackTrace();
+		}
+		System.out.println("End of divide");
+		return quotient;
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println("Enter a numerator");
+		int numerator = sc.nextInt();
+
+		System.out.println("Enter a denominator");
+		int denominator = sc.nextInt();
+
+		System.out.println("quotient : " + divide(numerator, denominator));
+
+		System.out.println("EOP");
+
+	}
+
+}
+
+
+```
+
+Adding multiple excpetions in  one catch using | symbol
+
+``` 
+catch (ArithmeticException | ArrayIndexOutOfBoundsException e) {
+
+			e.printStackTrace();
+		}
+
+```
+
+### finally block
+- Irrespective of exceptions this block will execute
+- try can be either with  catch alone or with finally alone or with both
+
+```  
+		finally {
+
+			sc.close();
+			System.out.println("In finally block");
+		}
 
 ```
