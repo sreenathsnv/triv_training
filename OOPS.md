@@ -23,6 +23,42 @@ With one class, many objects can be created
 - Used to create class variables and methods
 - Static components are loaded when we run java className.class is called or first occurence
 
+
+## this keyword
+
+- To refer the current object
+- Used to call the constructor of the class
+
+```
+	
+
+	public class Coordinate {
+		
+		private float x,y;
+
+		public Coordinate(float x) {
+			this.x = x;
+			
+		}
+		
+		// instead of the below one 
+	//	public Coordinate(float x, float y) {
+	//		this.x = x;
+	//		this.y = y;
+	//	}
+		// we can write it like this
+		
+		public Coordinate(float x, float y) {
+			this(x); // must be first statement
+			this.y = y;
+		}
+		
+		
+
+	}
+
+
+```
 #### Instance variables
 
   - variables which are attributes of an object
@@ -158,10 +194,21 @@ output
 - Provides data hiding and modularity
 - Data hiding can be performed using access specifier
 
+
+### Access specifier
+
+- public
+- protected
+- default
+- private
+
 ## Inheritance
 !["Inheritance in memory"](/images/inheritance.png)
 
 - in the constructor of child class super(); must be called first to ensure parent class initialization before the child class.
+
+- First the sub class constructer will be called first but the super class is instanciated first
+
 
 ### Simple inheritance 
 
@@ -298,7 +345,7 @@ public class MethodOverridingDemo {
 ### Dynamic  binding / Polymorphism
 
 Since the child object has some part of parent class in the memory,
-during the runtime , parent class will be able to refer that area. The JVM cant identify this
+during the runtime , parent class will be able to refer that area. The JVM can't identify this
 during the compile time.
 
 ``` 
@@ -316,6 +363,56 @@ With Multilevel inheritance A->B->C
 ```
 	A cobj = new C();
 	cobj.show(); // "Message from B"
+```
+
+
+### Method overloading
+
+- Compile time binding 
+- signature is different
+- differ in arg datatype, number of args , order of args
+
+``` 
+
+package com.trivium.oops;
+
+public class MethodOverLoadingDemo {
+
+	void show() {
+		System.out.println("Show without arguments");
+	}
+
+	void show(int x) {
+		System.out.println("Show with 1 int argument : " + x);
+	}
+
+	void show(String y) {
+		System.out.println("Show with 1 string argument : " + x);
+	}
+
+	void show(int x, String y) {
+		System.out.println("Show with 1 int and 1 String arguments : " + x + " " + y);
+	}
+
+	void show(String y, int x) {
+		System.out.println("Show with  1 String and 1 int arguments : " + y + " " + x);
+	}
+
+	public static void main(String[] args) {
+		
+		MethodOverLoadingDemo m = new MethodOverLoadingDemo();
+		m.show();
+		m.show(12);
+		m.show("hello" );
+		m.show(12, "hello");
+		m.show("hello",12);
+		
+
+	}
+
+}
+
+
 ```
 
 ### instanceof operator
