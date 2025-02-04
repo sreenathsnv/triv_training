@@ -11,6 +11,8 @@
 !["members and blocks"](/images/oops1.png)
 
 
+
+
 ## Class
 Classes are used to represent real world entities. It is a blueprint of objects.
 With one class, many objects can be created
@@ -470,7 +472,7 @@ public class MethodOverLoadingDemo {
 
 ```
 
-## Exception handling
+# Exception handling
 
 !["Exceptions"](/images/exceptions.png)
 
@@ -530,6 +532,11 @@ catch (ArithmeticException | ArrayIndexOutOfBoundsException e) {
 
 ```
 
+### Exception class
+
+Exception class is the parent class for all the Exceptions. 
+To handle unhandled exceptions and unknown exceptions , Exception class can be used.
+
 ### finally block
 - Irrespective of exceptions this block will execute
 - try can be either with  catch alone or with finally alone or with both
@@ -542,3 +549,176 @@ catch (ArithmeticException | ArrayIndexOutOfBoundsException e) {
 		}
 
 ```
+### try with resources
+
+- Most of the time finally blocks are used to close the resources. we can skip this by instantiating those resources in the try block itself
+- But, To implement this feature we need to implement autoclosable interface to the class
+
+``` 
+try (BufferedReader bf = new BufferedReader(new InputStreamReader(System.in))) {
+	...try block
+}
+catch(...){
+	...catch block
+
+}
+
+// No need of finally.The try will close the bf
+```
+
+### throw Keyword
+
+- From callee to the caller
+
+```
+
+	catch (Exception e) {
+			
+			System.out.println("Catch from divide");
+			throw e;//re throwing  propagating the exception to the caller
+		}
+
+```
+- From inner catch block to outer catch block Using nested try-catch blocks
+
+```
+
+	try {
+
+			try {
+				char ch = str.charAt(idx);
+				System.out.println("Character is " + ch);
+
+			} catch (Exception e) {
+				System.out.println("This is inner catch");
+				throw e;
+			}
+
+		} catch (StringIndexOutOfBoundsException e) {
+			System.out.println("This is outer catch block");
+			e.printStackTrace();
+		}
+		
+
+```
+
+
+- Throw an error by ourselves 
+```
+if(idx<0 || idx >= str.length()) {
+				
+				throw new StringIndexOutOfBoundsException();
+			}
+			else {
+				
+				char ch = str.charAt(idx);
+				System.out.println("Character is " + ch);
+			}
+```
+
+### Custom Exceptions
+
+defining a custom exception by extending Exception
+```
+public class InvalidUserNameException extends Exception {
+
+	String msg;
+
+	public InvalidUserNameException(String msg) {
+		super(msg);
+		
+	}
+
+}
+
+```
+
+Implementing the exception
+
+``` 
+if(username.length()<4 || username.length()>8) {
+			try {
+				throw new InvalidUserNameException("Length is not  between 4-8 char");
+			} catch (InvalidUserNameException e) {
+				
+				
+				e.printStackTrace();
+			}
+		}
+
+```
+
+### throws Keyword
+
+ Mostly used to handle compile time exception
+```
+
+	
+class Test{
+	
+	void method(String fileName,String className) throws FileNotFoundException, ClassNotFoundException {
+		
+		if(fileName == null) {
+			throw new FileNotFoundException(); // compile time exception
+		}
+		if(className == null) {
+			throw new ClassNotFoundException(); // compile time exception
+		}
+		System.out.println(fileName + "\n" +className);
+	}
+}
+
+public class ExceptionDemo11 {
+
+	public static void main(String[] args) throws FileNotFoundException, ClassNotFoundException {
+		
+		new Test().method("Hello", "HEllo");
+		System.out.println("EOP");
+
+	}
+
+}
+
+```
+
+
+# Wrapper Classes
+
+- Byte
+- Short
+- Integer
+- Long
+- Float
+- Double
+- Character
+- Boolean
+
+## Auto Boxing
+
+Primitive type is automatically warpped into its corresponding wrapper class
+reference type is called auto boxing \
+Here ``` i1 ``` is a Wrapper class reference variables and ``` 5 ``` belongs to primitive type ``` int ```
+
+```
+	Integer i1 = 5;
+```
+
+## Auto Unboxing
+
+A wrapper class object is converted into its corresponding primitive data type \
+Here ``` i2 ``` is a wrapper class object and ``` y ``` belongs to ``` int ``` type
+
+```
+	Integer i1 = 5;
+	int y = i1;
+
+```
+
+# Generics
+- Global methods or Global classes
+- Generics methods and Generics class
+
+## Generic method
+- Generic methods are static
+- Only works for wrapper or user-defined Classes
+- Not works for primitive types
