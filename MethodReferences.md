@@ -3,6 +3,8 @@
 
 In Java, method references provide a way to refer to methods of a class or an object using the :: operator. They are a shorthand for lambda expressions when working with functional interfaces.
 
+``` :: ``` is called method references operator
+
 ## 3 Types of Method references
 ### 1. Static method references
     ``` ClassName::staticMethodName ```
@@ -70,5 +72,28 @@ public class MethodReferencedemo2 {
 
 }
 
+
+```
+### 3. Reference to a Constructor (Constructor Reference)
+
+```
+
+public class MethodReferenceDemo3 {
+	
+	
+
+	public MethodReferenceDemo3() {
+		super();
+		System.out.println("Helloooo!!");
+	}
+
+	public static void main(String[] args) {
+		
+		Greetings greet = MethodReferenceDemo3::new;
+		greet.showMessage();
+
+	}
+
+}
 
 ```
