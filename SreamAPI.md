@@ -83,7 +83,7 @@ Map<String, List<Employee>> map = empList.stream().collect(Collectors.groupingBy
 
 ```
 
-## Partiotioning - true / false
+## Partitioning - true / false
 
 
 ```
